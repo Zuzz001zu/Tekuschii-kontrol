@@ -2,16 +2,10 @@ using System;
 
 namespace TipCalculator
 {
-    /// <summary>
-    /// Статический класс логики калькулятора чаевых.
-    /// Методы принимают простые типы (double, int) и возвращают результат.
-    /// При некорректных данных выбрасывают ArgumentException.
-    /// </summary>
+    /// Статический класс логики калькулятора чаевых. Методы принимают простые типы (double, int) и возвращают результат. При некорректных данных выбрасывают ArgumentException.
     public static class TipCalculatorLogic
     {
-        /// <summary>
         /// Вычисляет сумму чаевых.
-        /// </summary>
         /// <param name="billAmount">Сумма счёта в рублях. Должна быть больше 0.</param>
         /// <param name="tipPercent">Процент чаевых. Допустимые значения: 0, 5, 10, 15.</param>
         /// <returns>Сумма чаевых, округлённая до 2 знаков.</returns>
@@ -29,9 +23,7 @@ namespace TipCalculator
             return Math.Round(billAmount * tipPercent / 100.0, 2);
         }
 
-        /// <summary>
         /// Вычисляет итоговую сумму счёта с учётом чаевых.
-        /// </summary>
         /// <param name="billAmount">Сумма счёта в рублях. Должна быть больше 0.</param>
         /// <param name="tipPercent">Процент чаевых. Допустимые значения: 0, 5, 10, 15.</param>
         /// <returns>Итоговая сумма (счёт + чаевые), округлённая до 2 знаков.</returns>
@@ -41,9 +33,7 @@ namespace TipCalculator
             return Math.Round(billAmount + tip, 2);
         }
 
-        /// <summary>
         /// Вычисляет сумму, которую платит каждый гость.
-        /// </summary>
         /// <param name="totalAmount">Итоговая сумма счёта с чаевыми.</param>
         /// <param name="guestCount">Количество гостей. Должно быть не менее 1.</param>
         /// <returns>Сумма на одного гостя, округлённая до 2 знаков.</returns>
