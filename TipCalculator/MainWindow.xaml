@@ -1,0 +1,113 @@
+<Window x:Class="TipCalculator.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Калькулятор чаевых"
+        Height="480" Width="420"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+
+    <!-- Основная сетка окна -->
+    <Grid Margin="24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/> <!-- Заголовок -->
+            <RowDefinition Height="14"/>
+            <RowDefinition Height="Auto"/> <!-- Метка: сумма счёта -->
+            <RowDefinition Height="Auto"/> <!-- Поле: сумма счёта -->
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/> <!-- Метка: количество гостей -->
+            <RowDefinition Height="Auto"/> <!-- Поле: количество гостей -->
+            <RowDefinition Height="12"/>
+            <RowDefinition Height="Auto"/> <!-- Метка: процент чаевых -->
+            <RowDefinition Height="Auto"/> <!-- RadioButton-ы -->
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="Auto"/> <!-- Кнопка Рассчитать -->
+            <RowDefinition Height="18"/>
+            <RowDefinition Height="Auto"/> <!-- Блок результата -->
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок приложения -->
+        <TextBlock Grid.Row="0"
+                   Text="Калькулятор чаевых"
+                   FontSize="18" FontWeight="Bold"
+                   HorizontalAlignment="Center"/>
+
+        <!-- Метка поля ввода суммы счёта -->
+        <Label Grid.Row="2" Content="Сумма счёта (руб.):" FontSize="13"/>
+
+        <!-- Поле ввода суммы счёта -->
+        <TextBox x:Name="textBoxBill"
+                 Grid.Row="3"
+                 Height="30" FontSize="13"
+                 Padding="6,4"/>
+
+        <!-- Метка поля ввода количества гостей -->
+        <Label Grid.Row="5" Content="Количество гостей:" FontSize="13"/>
+
+        <!-- Поле ввода количества гостей; значение по умолчанию = 1 -->
+        <TextBox x:Name="textBoxGuests"
+                 Grid.Row="6"
+                 Height="30" FontSize="13"
+                 Padding="6,4"
+                 Text="1"/>
+
+        <!-- Метка выбора процента чаевых -->
+        <Label Grid.Row="8" Content="Процент чаевых:" FontSize="13"/>
+
+        <!-- RadioButton-ы для выбора процента чаевых (группа TipGroup) -->
+        <StackPanel Grid.Row="9" Orientation="Horizontal">
+            <!-- 0% — без чаевых (выбрано по умолчанию) -->
+            <RadioButton x:Name="radioTip0"
+                         Content="Без чаевых"
+                         GroupName="TipGroup"
+                         IsChecked="True"
+                         FontSize="13"
+                         Margin="0,0,12,0"
+                         VerticalAlignment="Center"/>
+            <!-- 5% -->
+            <RadioButton x:Name="radioTip5"
+                         Content="5%"
+                         GroupName="TipGroup"
+                         FontSize="13"
+                         Margin="0,0,12,0"
+                         VerticalAlignment="Center"/>
+            <!-- 10% -->
+            <RadioButton x:Name="radioTip10"
+                         Content="10%"
+                         GroupName="TipGroup"
+                         FontSize="13"
+                         Margin="0,0,12,0"
+                         VerticalAlignment="Center"/>
+            <!-- 15% -->
+            <RadioButton x:Name="radioTip15"
+                         Content="15%"
+                         GroupName="TipGroup"
+                         FontSize="13"
+                         VerticalAlignment="Center"/>
+        </StackPanel>
+
+        <!-- Кнопка запуска расчёта; обработчик buttonCalculate_Click в Code-Behind -->
+        <Button x:Name="buttonCalculate"
+                Grid.Row="11"
+                Content="Рассчитать"
+                Width="130" Height="34"
+                HorizontalAlignment="Left"
+                FontSize="13"
+                Click="buttonCalculate_Click"/>
+
+        <!-- Блок отображения результата; скрыт до первого расчёта -->
+        <Border Grid.Row="13"
+                x:Name="borderResult"
+                Background="#F0F4FF"
+                BorderBrush="#6A9FD8"
+                BorderThickness="1"
+                CornerRadius="6"
+                Padding="12"
+                Visibility="Collapsed">
+            <!-- TextBlock с результатами расчёта -->
+            <TextBlock x:Name="textBlockResult"
+                       FontSize="13"
+                       LineHeight="22"
+                       TextWrapping="Wrap"/>
+        </Border>
+    </Grid>
+</Window>
