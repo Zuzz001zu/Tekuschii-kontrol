@@ -4,17 +4,11 @@ using System;
 
 namespace TipCalculatorTests
 {
-    /// <summary>
-    /// Тесты класса TipCalculatorLogic.
-    /// Покрывают: корректные данные, граничные значения, некорректные данные.
-    /// Используются: AreEqual, AreNotEqual, IsTrue, IsFalse, ThrowsException.
-    /// </summary>
+    /// Тесты класса TipCalculatorLogic. Покрывают: корректные данные, граничные значения, некорректные данные. Используются: AreEqual, AreNotEqual, IsTrue, IsFalse, ThrowsException.
     [TestClass]
     public class TipCalculatorLogicTests
     {
-        // ══════════════════════════════════════════════════════
         //  CalculateTip — корректные данные
-        // ══════════════════════════════════════════════════════
 
         [TestMethod]
         public void CalculateTip_Bill1000_Tip0_Returns0()
@@ -59,9 +53,7 @@ namespace TipCalculatorTests
             Assert.IsTrue(result > 0);
         }
 
-        // ══════════════════════════════════════════════════════
         //  CalculateTip — граничные значения
-        // ══════════════════════════════════════════════════════
 
         [TestMethod]
         public void CalculateTip_VerySmallBill_Tip10_Returns0()
@@ -86,9 +78,7 @@ namespace TipCalculatorTests
             Assert.AreNotEqual(tip5, tip15);
         }
 
-        // ══════════════════════════════════════════════════════
         //  CalculateTip — некорректные данные (исключения)
-        // ══════════════════════════════════════════════════════
 
         [TestMethod]
         public void CalculateTip_ZeroBill_ThrowsArgumentException()
@@ -125,9 +115,7 @@ namespace TipCalculatorTests
                 TipCalculatorLogic.CalculateTip(500, -5));
         }
 
-        // ══════════════════════════════════════════════════════
         //  CalculateTotal — корректные данные
-        // ══════════════════════════════════════════════════════
 
         [TestMethod]
         public void CalculateTotal_Bill300_Tip0_ReturnsExactBill()
@@ -164,10 +152,8 @@ namespace TipCalculatorTests
             Assert.AreNotEqual(750.0, result);
         }
 
-        // ══════════════════════════════════════════════════════
         //  CalculatePerPerson — корректные данные
-        // ══════════════════════════════════════════════════════
-
+        
         [TestMethod]
         public void CalculatePerPerson_1Guest_ReturnsTotal()
         {
@@ -204,9 +190,7 @@ namespace TipCalculatorTests
             Assert.AreNotEqual(per2, per4);
         }
 
-        // ══════════════════════════════════════════════════════
         //  CalculatePerPerson — граничные значения
-        // ══════════════════════════════════════════════════════
 
         [TestMethod]
         public void CalculatePerPerson_100Guests_ReturnsSmallAmount()
@@ -215,9 +199,7 @@ namespace TipCalculatorTests
             Assert.AreEqual(1.0, result, 0.001);
         }
 
-        // ══════════════════════════════════════════════════════
         //  CalculatePerPerson — некорректные данные (исключения)
-        // ══════════════════════════════════════════════════════
 
         [TestMethod]
         public void CalculatePerPerson_0Guests_ThrowsArgumentException()
