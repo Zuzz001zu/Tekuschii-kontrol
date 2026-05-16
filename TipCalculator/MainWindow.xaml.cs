@@ -3,10 +3,7 @@ using System.Windows;
 
 namespace TipCalculator
 {
-    /// <summary>
-    /// Code-Behind главного окна.
-    /// Отвечает только за UI: считывает ввод, вызывает логику, отображает результат.
-    /// </summary>
+    /// Code-Behind главного окна. Отвечает только за UI: считывает ввод, вызывает логику, отображает результат. 
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -14,13 +11,10 @@ namespace TipCalculator
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Обработчик нажатия кнопки "Рассчитать".
-        /// Валидирует ввод, вызывает TipCalculatorLogic, показывает результат.
-        /// </summary>
+        /// Обработчик нажатия кнопки "Рассчитать". Валидирует ввод, вызывает TipCalculatorLogic, показывает результат.
         private void buttonCalculate_Click(object sender, RoutedEventArgs e)
         {
-            // --- Валидация суммы счёта ---
+            // Валидация суммы счёта 
             // Заменяем точку на запятую для поддержки обоих разделителей
             string billText = textBoxBill.Text.Trim().Replace('.', ',');
             if (!double.TryParse(billText, out double bill) || bill <= 0)
@@ -33,7 +27,7 @@ namespace TipCalculator
                 return;
             }
 
-            // --- Валидация количества гостей ---
+            // Валидация количества гостей
             if (!int.TryParse(textBoxGuests.Text.Trim(), out int guests) || guests < 1)
             {
                 MessageBox.Show(
@@ -44,7 +38,7 @@ namespace TipCalculator
                 return;
             }
 
-            // --- Определение выбранного процента чаевых ---
+            // Определение выбранного процента чаевых 
             int tipPercent = 0;
             if (radioTip5.IsChecked == true)       tipPercent = 5;
             else if (radioTip10.IsChecked == true) tipPercent = 10;
@@ -52,12 +46,12 @@ namespace TipCalculator
 
             try
             {
-                // --- Вызов методов класса логики ---
+                // Вызов методов класса логики 
                 double tip       = TipCalculatorLogic.CalculateTip(bill, tipPercent);
                 double total     = TipCalculatorLogic.CalculateTotal(bill, tipPercent);
                 double perPerson = TipCalculatorLogic.CalculatePerPerson(total, guests);
 
-                // --- Формирование строки результата ---
+                // Формирование строки результата 
                 string result =
                     $"Сумма счёта:      {bill:F2} руб.\n" +
                     $"Чаевые ({tipPercent,2}%):     {tip:F2} руб.\n" +
@@ -67,7 +61,7 @@ namespace TipCalculator
                 if (guests > 1)
                     result += $"\nНа каждого гостя ({guests} чел.): {perPerson:F2} руб.";
 
-                // --- Отображение результата ---
+                // Отображение результата 
                 textBlockResult.Text = result;
                 borderResult.Visibility = Visibility.Visible;
             }
